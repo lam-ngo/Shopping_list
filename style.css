@@ -1,0 +1,105 @@
+/*Main component*/
+html,body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: lightgrey;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.header {
+  height: 70px;
+  padding-top: 5px;
+  background-color: orange;
+  color: white;
+}
+
+.font-big {
+  font-size: 22px;
+}
+
+.font-medium {
+  font-size: 18px;
+}
+
+button {
+  cursor: pointer;
+  width: 80px;
+  height: 30px;
+  margin: auto;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+input {
+  height: 30px;
+  margin: auto;
+}
+
+input[type="text"] {
+  width: 400px;
+  margin-right: 40px;
+  padding: 0px 10px;
+  font-weight: 600;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  width: 30px;
+}
+
+.content-wrapper {
+  width: 600px;
+  margin: auto;
+}
+
+.container {
+  margin: 50px 0px;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px darkgrey;
+}
+
+.container-sub {
+  margin-top: 20px;
+  padding: 10px 0px;
+}
+
+.heading {
+  height: 55px;
+  padding-top: 1px;
+  background-color: orange;
+  color: white;
+}
+
+table {
+
+}
+
+table tr {
+  height: 48px;
+  font-size: 14px;
+}
+
+.table-column-1 {
+  width: 100px;
+}
+
+.table-column-2 {
+  width: 300px;
+}
+
+.table-column-3 {
+  width: 100px;
+}
+
+.table-column-4 {
+  width: 100px;
+}
+
+table td {
+  text-align: center;
+  padding: 10px;
+}
