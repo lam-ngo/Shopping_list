@@ -1,4 +1,4 @@
-// main state store of the application
+// hard-coded datas
 const store = {
   toBuyList: [
     {name: 'meat', quantity: 2},
@@ -9,14 +9,16 @@ const store = {
   ],
   doneList: [
     {name: 'fruit', quantity: 6},
+    {name: 'candy', quantity: 10},
+    {name: 'beer', quantity: 7},
   ]
 }
 
-// rendering to buy table
+
+//REDERING TO BUY TABLE
 const toBuyTable = document.getElementById('table-toBuy');
 
-const renderToBuy = (list) => {
-  for(let item of list) {
+const renderToBuy = (item) => {
     let row = document.createElement("tr");
     let td1 = document.createElement("td");
     let td2 = document.createElement("td");
@@ -33,6 +35,7 @@ const renderToBuy = (list) => {
     td3.innerHTML = item.quantity;
 
     button.innerHTML = 'DELETE';
+    button.className = 'delete-button';
     td4.appendChild(button);
 
     row.appendChild(td1);
@@ -41,16 +44,17 @@ const renderToBuy = (list) => {
     row.appendChild(td4);
 
     toBuyTable.appendChild(row);
-  }
 }
 
-renderToBuy(store.toBuyList);
+for(let item of store.toBuyList) {
+  renderToBuy(item);
+}
 
-//rendering done table
+//REDERING DONE TABLE
+
 const doneTable = document.getElementById('table-done');
 
-const renderDone = (list) => {
-  for(let item of list) {
+const renderDone = (item) => {
     let row = document.createElement("tr");
     let td1 = document.createElement("td");
     let td2 = document.createElement("td");
@@ -67,6 +71,7 @@ const renderDone = (list) => {
     td3.innerHTML = item.quantity;
 
     buttonDelete.innerHTML = 'DELETE';
+    buttonDelete.className = 'delete-button';
     td4.appendChild(buttonDelete);
 
     row.appendChild(td1);
@@ -75,7 +80,41 @@ const renderDone = (list) => {
     row.appendChild(td4);
 
     doneTable.appendChild(row);
-  }
 }
 
-renderDone(store.doneList);
+for(let item of store.doneList) {
+  renderDone(item);
+}
+
+//ADD EVENTLISTENER FOR DELETE
+windowReady = () => {
+  let deleteButtonArray = Array.from(document.getElementsByClassName("delete-button"));
+
+  deleteButtonArray.forEach((button) => {
+    applyEvent(button);
+  });
+}
+
+const applyEvent = (element) => {
+  element.addEventListener('click', () => {
+    const row = element.parentNode.parentNode;
+    const td = row.childNodes;
+    const item = {name: td[1].innerHTML, quantity: td[2].innerHTML};
+    console.log(item);
+    row.parentNode.removeChild(row);
+  })
+}
+windowReady();
+
+//ADD NEW ITEM
+document.getElementById("add-button").addEventListener('click', (e) => {
+  e.preventDefault();
+  let newName = document.getElementById("add-name").value;
+  let newQuantity = document.getElementById("add-quantity").value;
+  store.toBuyList.push({name: newName, quantity: newQuantity});
+  renderToBuy({name: newName, quantity: newQuantity});
+  document.getElementById("add-name").value = "";
+  document.getElementById("add-quantity").value = "";
+});
+
+//MOVE FROM TO BUY TO DONE
