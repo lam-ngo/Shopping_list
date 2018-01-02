@@ -45,7 +45,7 @@ const applyUndoEvent = (element) => {
 }
 
 //RENDERING SINGLE ITEM
-const renderItem = (item, parentNodeId, firstButton, firstButtonEvent) => {
+const renderItem = (item, parentNodeId, firstButton, firstButtonEvent, textStyle) => {
     let row = document.createElement("tr");
     let td1 = document.createElement("td");
     let td2 = document.createElement("td");
@@ -56,6 +56,7 @@ const renderItem = (item, parentNodeId, firstButton, firstButtonEvent) => {
     firstButtonEvent(firstButton);
     td1.appendChild(firstButton);
     td2.innerHTML = item.name;
+    td2.className = textStyle;
     td3.innerHTML = item.quantity;
     button.innerHTML = 'DELETE';
     applyDeleteEvent(button);
@@ -74,7 +75,7 @@ const renderItem = (item, parentNodeId, firstButton, firstButtonEvent) => {
 const renderToBuy = (item) => {
   let checkBox = document.createElement("input");
   checkBox.type = "checkbox";
-  renderItem(item, 'table-toBuy', checkBox, applyDoneEvent);
+  renderItem(item, 'table-toBuy', checkBox, applyDoneEvent, '');
 }
 for(let item of store.toBuyList) {
   renderToBuy(item);
@@ -84,7 +85,7 @@ for(let item of store.toBuyList) {
 const renderDone = (item) => {
   let undoButton = document.createElement("button");
   undoButton.innerHTML = 'UNDO';
-  renderItem(item, 'table-done', undoButton, applyUndoEvent);
+  renderItem(item, 'table-done', undoButton, applyUndoEvent, 'text-done');
 }
 for(let item of store.doneList) {
   renderDone(item);
