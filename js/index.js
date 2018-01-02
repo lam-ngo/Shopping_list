@@ -20,7 +20,6 @@ const applyDeleteEvent = (element) => {
     const row = element.parentNode.parentNode;
     const td = row.childNodes;
     const item = {name: td[1].innerHTML, quantity: td[2].innerHTML};
-    console.log(item);
     row.parentNode.removeChild(row);
   })
 }
@@ -30,7 +29,6 @@ const applyDoneEvent = (element) => {
     const row = element.parentNode.parentNode;
     const td = row.childNodes;
     const item = {name: td[1].innerHTML, quantity: td[2].innerHTML};
-    console.log(item);
     row.parentNode.removeChild(row);
     renderDone(item);
   })
@@ -41,14 +39,13 @@ const applyUndoEvent = (element) => {
     const row = element.parentNode.parentNode;
     const td = row.childNodes;
     const item = {name: td[1].innerHTML, quantity: td[2].innerHTML};
-    console.log(item);
     row.parentNode.removeChild(row);
     renderToBuy(item);
   })
 }
 
-//REDERING TO BUY TABLE
-const renderItem = (item, parentNode, firstButton, firstButtonEvent) => {
+//RENDERING SINGLE ITEM
+const renderItem = (item, parentNodeId, firstButton, firstButtonEvent) => {
     let row = document.createElement("tr");
     let td1 = document.createElement("td");
     let td2 = document.createElement("td");
@@ -56,14 +53,10 @@ const renderItem = (item, parentNode, firstButton, firstButtonEvent) => {
     let td4 = document.createElement("td");
     let button = document.createElement("button");
 
-
     firstButtonEvent(firstButton);
     td1.appendChild(firstButton);
-
     td2.innerHTML = item.name;
-
     td3.innerHTML = item.quantity;
-
     button.innerHTML = 'DELETE';
     applyDeleteEvent(button);
     td4.appendChild(button);
@@ -73,58 +66,26 @@ const renderItem = (item, parentNode, firstButton, firstButtonEvent) => {
     row.appendChild(td3);
     row.appendChild(td4);
 
+    let parentNode = document.getElementById(parentNodeId);
     parentNode.appendChild(row);
 }
 
+//REDERING TO BUY TABLE
 const renderToBuy = (item) => {
-  const toBuyTable = document.getElementById('table-toBuy');
   let checkBox = document.createElement("input");
   checkBox.type = "checkbox";
-  renderItem(item, toBuyTable, checkBox, applyDoneEvent);
+  renderItem(item, 'table-toBuy', checkBox, applyDoneEvent);
 }
-
 for(let item of store.toBuyList) {
   renderToBuy(item);
 }
 
 //REDERING DONE TABLE
-
-
-const renderDoneItem = (item, parentNode, firstButton, firstButtonEvent) => {
-    let row = document.createElement("tr");
-    let td1 = document.createElement("td");
-    let td2 = document.createElement("td");
-    let td3 = document.createElement("td");
-    let td4 = document.createElement("td");
-    let deleteButton = document.createElement("button");
-
-    firstButtonEvent(firstButton);
-    td1.appendChild(firstButton);
-
-    td2.innerHTML = item.name;
-
-    td3.innerHTML = item.quantity;
-
-    deleteButton.innerHTML = 'DELETE';
-    deleteButton.className = 'delete-button';
-    applyDeleteEvent(deleteButton);
-    td4.appendChild(deleteButton);
-
-    row.appendChild(td1);
-    row.appendChild(td2);
-    row.appendChild(td3);
-    row.appendChild(td4);
-
-    parentNode.appendChild(row);
-}
-
 const renderDone = (item) => {
-  const doneTable = document.getElementById('table-done');
   let undoButton = document.createElement("button");
   undoButton.innerHTML = 'UNDO';
-  renderDoneItem(item, doneTable, undoButton, applyUndoEvent);
+  renderItem(item, 'table-done', undoButton, applyUndoEvent);
 }
-
 for(let item of store.doneList) {
   renderDone(item);
 }
