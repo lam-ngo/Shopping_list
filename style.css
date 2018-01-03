@@ -40,8 +40,8 @@ input {
 }
 
 input[type="text"] {
-  width: 400px;
-  margin-right: 40px;
+  width: 300px;
+  margin-right: 20px;
   padding: 0px 10px;
   font-weight: 600;
 }
@@ -52,7 +52,7 @@ input[type="checkbox"] {
 }
 
 input[type="number"] {
-  width: 100px;
+  width: 80px;
   padding: 0px 10px;
 }
 
@@ -111,4 +111,15 @@ table tr {
 table td {
   text-align: center;
   padding: 10px;
+}
+
+#collapsibleOpen {
+  cursor: pointer;
+}
+
+#collapsible {
+  display: none;
+}
+#collapsibleClose {
+  display: none;
 }

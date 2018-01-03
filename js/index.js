@@ -96,7 +96,24 @@ document.getElementById("add-new").addEventListener('submit', (e) => {
   e.preventDefault();
   let newName = document.getElementById("add-name").value;
   let newQuantity = document.getElementById("add-quantity").value;
-  renderToBuy({name: newName, quantity: newQuantity});
-  document.getElementById("add-name").value = "";
-  document.getElementById("add-quantity").value = "";
+  if(newName !== '' && newQuantity !== '') {
+    renderToBuy({name: newName, quantity: newQuantity});
+    document.getElementById("add-name").value = "";
+    document.getElementById("add-quantity").value = "";
+  } else {
+    alert('No field can be empty!');
+  }
 });
+
+//COLLAPSIBLE PANEL
+document.getElementById("collapsibleOpen").addEventListener('click', () => {
+  tableToggle ("block", "none", "block");
+});
+document.getElementById("collapsibleClose").addEventListener('click', () => {
+  tableToggle ("none", "block", "none");
+});
+const tableToggle = (table, open, close) => {
+  document.getElementById("collapsible").style.display = table;
+  document.getElementById("collapsibleOpen").style.display = open;
+  document.getElementById("collapsibleClose").style.display = close;
+}

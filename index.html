@@ -23,7 +23,7 @@
         <table>
           <thead>
             <tr>
-              <th class="table-column-1"></th>
+              <th class="table-column-1">Done?</th>
               <th class="table-column-2">Name</th>
               <th class="table-column-3">Quantity</th>
               <th class="table-column-4"></th>
@@ -44,8 +44,6 @@
         <form id="add-new">
           <p>
             Name: <input type="text" id="add-name" placeholder="new item" />
-          </p>
-          <p>
             Quantity: <input type="number" id="add-quantity" />
           </p>
           <button type="submit" id="add-button">ADD</button>
@@ -58,7 +56,7 @@
         <p class="font-medium">Forgot to buy? Put it back!</p>
       </div>
       <div class="container-sub">
-        <table>
+        <table id="collapsible">
           <thead>
             <tr>
               <th class="table-column-1"></th>
@@ -71,6 +69,8 @@
             <!-- javascript will render the whole table with the item list from the store -->
           </tbody>
         </table>
+        <button id="collapsibleOpen">OPEN</button>
+        <button id="collapsibleClose">CLOSE</button>
       </div>
     </div>
   </div>
