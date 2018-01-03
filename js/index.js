@@ -1,16 +1,19 @@
 //HARD CODED DATA
 const store = {
   toBuyList: [
-    {name: 'meat', quantity: 2},
-    {name: 'fish', quantity: 3},
-    {name: 'egg', quantity: 4},
-    {name: 'noodle', quantity: 5},
-    {name: 'vegetable', quantity: 6},
+    {name: 'paper', quantity: 2},
+    {name: 'computer', quantity: 1},
+    {name: 'water', quantity: 4},
+    {name: 'coffee', quantity: 5},
+    {name: 'food', quantity: 6},
+    {name: 'beer', quantity: 5},
+    {name: 'glasses', quantity: 6},
   ],
   doneList: [
-    {name: 'fruit', quantity: 6},
+    {name: 'pillow', quantity: 2},
     {name: 'candy', quantity: 10},
-    {name: 'beer', quantity: 7},
+    {name: 'coke', quantity: 7},
+    {name: 'tea', quantity: 5},
   ]
 };
 
@@ -44,7 +47,7 @@ const applyUndoEvent = (element) => {
   })
 }
 
-//RENDERING SINGLE ITEM
+//RENDERING SINGLE ITEM WITH PREDEFINED FEATURES
 const renderItem = (item, parentNodeId, firstButton, firstButtonEvent, textStyle) => {
     let row = document.createElement("tr");
     let td1 = document.createElement("td");
@@ -71,7 +74,7 @@ const renderItem = (item, parentNodeId, firstButton, firstButtonEvent, textStyle
     parentNode.appendChild(row);
 }
 
-//REDERING TO BUY TABLE
+//REDERING TO BUY TABLE WITH IDENTICAL FEATURES
 const renderToBuy = (item) => {
   let checkBox = document.createElement("input");
   checkBox.type = "checkbox";
@@ -81,7 +84,7 @@ for(let item of store.toBuyList) {
   renderToBuy(item);
 }
 
-//REDERING DONE TABLE
+//REDERING DONE TABLE WITH IDENTICAL FEATURES
 const renderDone = (item) => {
   let undoButton = document.createElement("button");
   undoButton.innerHTML = 'UNDO';
